@@ -21,5 +21,8 @@ public class Vertex {
 		edges.remove(edge);
 	}
 	
+	public String getId(){
+		return this.id;
+	}
 	
 }
