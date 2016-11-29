@@ -3,7 +3,7 @@
 public class AEstrela implements IAlgoritmoDeBusca {
 
 	@Override
-	public String search(No noIni, No noFin) {
+	public String search(Vertex noIni, Vertex noFin) {
 		// TODO Auto-generated method stub
 		return null;
 	}
