@@ -34,7 +34,7 @@ public class AEstrela implements IAlgoritmoDeBusca {
 			}
 
 			distancia += distLocal;
-			resultado += noAux.getId();
+			resultado += noAux.getId() + ";";
 
 		}
 
