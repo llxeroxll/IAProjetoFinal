@@ -20,6 +20,10 @@ public class Graph {
 		vertexes.add(vertex);
 	}
 	
+	public double getEclidDist(String no1, String no2){
+		return null;//todo
+	}
+
 	public Vertex searchVertex(String id){
 		return null;//todo
 	}
