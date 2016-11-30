@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,14 +13,32 @@ public class Graph {
 	// função heuristica
 	private double[][] heuristicMatrix;
 	
-	public void uploadHeuristicMatrix(int numOfVertexes, String file){
+	public void loadHeuristicMatrix(int numOfVertexes, String file){
 		heuristicMatrix = new double [numOfVertexes][numOfVertexes];
 		
-		
+		try {
+			FileReader arq = new FileReader(file);
+		    BufferedReader lerArq = new BufferedReader(arq);
+		 
+		    String linha; // lê a primeira linha
+		    String[] numbers;
+		    for(int i =0; i < numOfVertexes; i++){
+		    	linha = lerArq.readLine(); // lê da segunda até a última linha
+		    	numbers = linha.split(";");
+		    	for(int j = 0; j<numOfVertexes; j++){
+		    		heuristicMatrix[i][j] =  Double.parseDouble(numbers[j]);
+		    	}
+		    }
+		    	arq.close();
+		    } catch (IOException e) {
+		        System.err.printf("Erro na abertura do arquivo: %s.\n",
+		        e.getMessage());
+		    }
+				
 	}
 	
-	public double getEclidDist(String no1, String no2){
-		return 0;
+	public double getEclidDist(int no1, int no2){
+		return heuristicMatrix[no1][no2];
 	}
 	// fim função heuristica
 	
@@ -28,15 +49,15 @@ public class Graph {
 		edges = new ArrayList<Edge>();
 	}
 	
-	public void addVertex(String id){
-		Vertex vertex = new Vertex(id);
+	public void addVertex(int id, String name){
+		Vertex vertex = new Vertex(id, name);
 		this.v++;
 		vertexes.add(vertex);
 	}
 	
 
 
-	public Vertex searchVertex(String id){
+	public Vertex searchVertex(int id){
 		for(Vertex v: vertexes){
 			if(id == v.getId())
 				return v;
@@ -44,7 +65,7 @@ public class Graph {
 		return null;
 	}
 	
-	public void addEdge(String origin, String destination, double value){
+	public void addEdge(int origin, int destination, double value){
 		Edge edge = new Edge(origin, destination, value);
 		this.e++;
 		edges.add(edge);
@@ -71,7 +92,7 @@ public class Graph {
 		e--;
 	}
 	
-	public void updateEdge(String id1, String id2, double newValue){
+	public void updateEdge(int id1, int id2, double newValue){
 		for(Edge edge: edges){
 			if(edge.getOrigin() == id1 && edge.getDestination() == id2){
 				edge.setValue(newValue);
@@ -94,5 +115,35 @@ public class Graph {
 		v--;
 	}
 	
+	public void loadGraphData(String file){
+		
+		try {
+			FileReader arq = new FileReader(file);
+		    BufferedReader lerArq = new BufferedReader(arq);
+		 
+		    String linha = lerArq.readLine(); // lê a primeira linha
+		    int numberOfVertexes = Integer.parseInt(linha);
+		    
+		    String[] data;
+		    
+		    for(int i = 0; i<numberOfVertexes; i++){
+		    	linha = lerArq.readLine();
+		    	addVertex(i, linha);
+		    }
+		    linha = lerArq.readLine();
+		    while(linha != null){
+		    	data = linha.split(";");
+		    	addEdge(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Double.parseDouble(data[2]));
+		    	linha = lerArq.readLine();
+		    }
+		    
+		    
+		    	arq.close();
+		    } catch (IOException e) {
+		        System.err.printf("Erro na abertura do arquivo: %s.\n",
+		        e.getMessage());
+		    }
+		
+	}
 	
 }

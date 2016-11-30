@@ -1,20 +1,20 @@
 
 public class Edge {
-	private String origin;
-	private String destination;
+	private int origin;
+	private int destination;
 	private double value;
 	
-	public Edge(String o,String d, double v){
+	public Edge(int o,int d, double v){
 		origin = o;
 		destination = d;
 		value = v;
 	}
 
-	public String getOrigin() {
+	public int getOrigin() {
 		return origin;
 	}
 
-	public String getDestination() {
+	public int getDestination() {
 		return destination;
 	}
 

@@ -15,10 +15,10 @@ public class AEstrela implements IAlgoritmoDeBusca {
 		double distLocal;
 		double menorVal;
 		double distHeuristica;
-		String resultado = noIni.getId() + ";";
+		String resultado = noIni.getName();
 
-		while(!noAux.getId().equals(noFin.getId())){
-
+		while(!(noAux.getId() == noFin.getId())){
+			resultado += " -> ";
 			menorVal = Double.MAX_VALUE;
 			distLocal = 0;
 
@@ -40,10 +40,10 @@ public class AEstrela implements IAlgoritmoDeBusca {
 			}
 
 			distancia += distLocal;
-			resultado += noAux.getId() + ";";
+			resultado += noAux.getName();
 
 		}
-
+		resultado += "\nDistancia Total: " + distancia;
 		return resultado;
 	}
 
