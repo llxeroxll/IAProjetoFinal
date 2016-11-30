@@ -22,7 +22,7 @@ public class Vertex {
 	}
 	
 	public String getId(){
-		return this.id;
+		return id;
 	}
 	
 }

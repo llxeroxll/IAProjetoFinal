@@ -1,12 +1,18 @@
 
 //strategy de IAlgoritmoDeBusca
 public class AEstrela implements IAlgoritmoDeBusca {
-
+	
+	Graph grafo;
+	
+	public AEstrela(Graph grafo){
+		this.grafo = grafo;
+	}
+	
 	@Override
-	public String search(Vertex noIni, Vertex noFin, Graph grafo) {
+	public String search(Vertex noIni, Vertex noFin) {
 		Vertex noAux = noIni;
-		double distância = 0;
-		double distanciaLocal;
+		double distancia = 0;
+		double distLocal;
 		double menorVal;
 		double distHeuristica;
 		String resultado = noIni.getId() + ";";
@@ -14,11 +20,11 @@ public class AEstrela implements IAlgoritmoDeBusca {
 		while(!noAux.getId().equals(noFin.getId())){
 
 			menorVal = Double.MAX_VALUE;
-			distanciaLocal = 0;
+			distLocal = 0;
 
 			for (Edge e : noAux.getEdges()) {
 
-				if(grafo.getEclidDist(e.getDestination(), noFin.getId() < 0) {
+				if(grafo.getEclidDist(e.getDestination(), noFin.getId()) < 0) {
 					continue;
 				}
 
