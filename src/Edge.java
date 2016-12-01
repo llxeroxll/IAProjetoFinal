@@ -2,12 +2,12 @@
 public class Edge {
 	private int origin;
 	private int destination;
-	private double value;
+	private Day day;
 	
-	public Edge(int o,int d, double v){
+	public Edge(int o,int d){
 		origin = o;
 		destination = d;
-		value = v;
+		day = new Day();
 	}
 
 	public int getOrigin() {
@@ -19,12 +19,12 @@ public class Edge {
 	}
 
 
-	public double getValue() {
-		return value;
+	public double getHour(int hour) {
+		return day.getHour(hour);
 	}
 
-	public void setValue(double value) {
-		this.value = value;
+	public void setHour(double value, int hour) {
+		day.setHour(value, hour);
 	}
 	
 	

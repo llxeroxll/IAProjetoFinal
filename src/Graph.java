@@ -10,6 +10,7 @@ public class Graph {
 	private ArrayList<Vertex> vertexes;
 	private ArrayList<Edge> edges;
 	
+	
 	// função heuristica
 	private double[][] heuristicMatrix;
 	
@@ -65,11 +66,12 @@ public class Graph {
 		return null;
 	}
 	
-	public void addEdge(int origin, int destination, double value){
-		Edge edge = new Edge(origin, destination, value);
+	public Edge addEdge(int origin, int destination){
+		Edge edge = new Edge(origin, destination);
 		this.e++;
 		edges.add(edge);
 		searchVertex(origin).addEdge(edge);
+		return edge;
 		
 	}
 	
@@ -92,10 +94,10 @@ public class Graph {
 		e--;
 	}
 	
-	public void updateEdge(int id1, int id2, double newValue){
+	public void updateEdge(int id1, int id2, double newValue, int hour){
 		for(Edge edge: edges){
 			if(edge.getOrigin() == id1 && edge.getDestination() == id2){
-				edge.setValue(newValue);
+				edge.setHour(newValue, hour);
 				break;
 			}
 		}
@@ -133,7 +135,7 @@ public class Graph {
 		    linha = lerArq.readLine();
 		    while(linha != null){
 		    	data = linha.split(";");
-		    	addEdge(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Double.parseDouble(data[2]));
+		    	addEdge(Integer.parseInt(data[0]),Integer.parseInt(data[1]));
 		    	linha = lerArq.readLine();
 		    }
 		    
