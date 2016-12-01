@@ -83,6 +83,15 @@ public class Graph {
 		return vertex.getEdges();
 	}
 	
+	public ArrayList<Vertex> getNeighbors(Vertex vertex){
+		ArrayList<Edge> edges = getExitingEdges(vertex);
+		ArrayList<Vertex> retorno = new ArrayList<Vertex>();
+		for(Edge edge: edges){
+			retorno.add(searchVertex(edge.getDestination()));
+		}
+		return retorno;
+	}
+	
 	public ArrayList<Edge> getVisitingEdges(Vertex vertex){
 		ArrayList<Edge> ret = new ArrayList<Edge>();
 		for(Edge e: edges){

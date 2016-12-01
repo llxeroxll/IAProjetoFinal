@@ -7,8 +7,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		String path = "X:\\UFPB\\P7\\IA\\PROJETO IA\\IAProjetoFinal\\src\\";
-		String pathTraining = "X:\\UFPB\\P7\\IA\\PROJETO IA\\IAProjetoFinal\\src\\Treinos\\";
+		String path = "C:\\Coisas\\IAProjetoFinal\\src\\";
+		String pathTraining = "C:\\Coisas\\IAProjetoFinal\\src\\Treinos\\";
 		
 		Graph graph = new Graph();
 		graph.loadGraphData(path + "graph.txt");
@@ -26,7 +26,7 @@ public class Main {
 		
 		AEstrela executor = new AEstrela(graph);
 //		Greedy executor = new Greedy(graph);
-		String saida = executor.search(graph.searchVertex(0), graph.searchVertex(6), 6);
+		String saida = executor.search(graph.searchVertex(5), graph.searchVertex(12), 6);
 		
 		System.out.println(saida);
 	}

@@ -1,4 +1,10 @@
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.TreeSet;
+
 //strategy de IAlgoritmoDeBusca
 public class AEstrela implements IAlgoritmoDeBusca {
 	
@@ -8,47 +14,99 @@ public class AEstrela implements IAlgoritmoDeBusca {
 		this.grafo = grafo;
 	}
 	
+	/*
+	public String search(Vertex noIni, Vertex noFin, int hour) {
+		
+		TreeSet<Frontier> openSet = new TreeSet<Frontier>();
+		HashSet<String> closedSet = new HashSet<String>();
+		double tentative_gScore;
+		Frontier current;
+		String path = null;
+		
+		openSet.add(new Frontier(noIni, 0));
+		
+		while(openSet.size() != 0){			
+			
+			current = openSet.first();
+			current.incPath(current.getVertex().getName());
+			
+			if(current.getVertex().getId() == noFin.getId()){
+				path = current.getPath();
+				break;
+			}
+			
+			openSet.remove(current);
+			closedSet.add(current.getVertex().getName());
+			
+			for(Edge edge: grafo.getExitingEdges(current.getVertex())){
+				Vertex v = grafo.searchVertex(edge.getDestination());
+				System.out.println(v.getName());
+				if(isContained(closedSet, v.getName())){
+					continue;
+				}else{
+					tentative_gScore = current.getScore() + edge.getHour(hour);
+					Frontier next = new Frontier(v,tentative_gScore);
+					
+					if(!openSet.contains(next)){
+						next.incPath(current.getPath() + "->");
+						openSet.add(next);
+					}
+						
+				}
+					
+			}
+		}
+		
+		return path;
+	}
+	
+	*/
+	
+	
+	
+	
+	
+	
 	@Override
 	public String search(Vertex noIni, Vertex noFin, int hour) {
-		Vertex noAux = noIni;
-		double distancia = 0;
-		double distLocal;
-		double menorVal;
-		double distHeuristica;
-		String resultado = noIni.getName();
-
-		while(!(noAux.getId() == noFin.getId())){
-			System.out.println("Inicial: "+ noAux.getId() + "\tFinal: " + noFin.getId());
-			//System.out.println("entrou no while");
-			resultado += " -> ";
-			menorVal = Double.MAX_VALUE;
-			distLocal = 0;
-
-			for (Edge e : noAux.getEdges()) {
+		LinkedList<Frontier> openSet = new LinkedList<Frontier>();
+		ArrayList<Vertex> closedSet = new ArrayList<Vertex>();
+		openSet.addFirst(new Frontier(noIni, 0));
+		
+		while(openSet.size() != 0){
 				
-				//System.out.println("entrou no for");
-				if(grafo.getEclidDist(e.getDestination(), noFin.getId()) < 0) {
-					continue;
-				}
-
-				distHeuristica = 0;
-				distHeuristica = grafo.getEclidDist(e.getDestination(), noFin.getId());
-				distHeuristica += e.getHour(hour);
-
-				if(distHeuristica <= menorVal){
-					//System.out.println("entrou no if");
-					menorVal = distHeuristica;
-					distLocal = e.getHour(hour);
-					noAux = grafo.searchVertex(e.getDestination());
-				}
+			Frontier current = openSet.getFirst();
+			closedSet.add(current.getVertex());
+			
+			current.incPath(current.getVertex().getName());
+			
+			if(current.getVertex().getId() == noFin.getId()){
+				return  current.getPath();
 			}
-
-			distancia += distLocal;
-			resultado += noAux.getName();
-
+			
+			for(Edge e: grafo.getExitingEdges(current.getVertex())){
+				Vertex v = grafo.searchVertex(e.getDestination());
+				
+				if(isContained(closedSet, v.getId())){
+					continue;
+				}else{
+					Frontier nova = new Frontier(v, current.getScore() + e.getHour(hour));
+					nova.incPath(current.getPath() + "->");
+					openSet.add(nova);
+				}	
+			}
+			
 		}
-		resultado += "\nDistancia Total: " + distancia;
-		return resultado;
+		return null;
 	}
-
+	
+	private boolean isContained(ArrayList<Vertex> closedSet, int id){
+		for(Vertex v: closedSet ){
+			if(v.getId() == id){
+				return true;
+			}
+		}
+		return false;
+	}
 }
+
