@@ -24,7 +24,7 @@ public class Main {
 				
 		
 		
-		AEstrela executor = new AEstrela(graph);
+		BFS executor = new BFS(graph);
 //		Greedy executor = new Greedy(graph);
 		String saida = executor.search(graph.searchVertex(5), graph.searchVertex(12), 6);
 		

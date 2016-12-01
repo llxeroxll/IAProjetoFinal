@@ -1,16 +1,11 @@
-
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.TreeSet;
 
-//strategy de IAlgoritmoDeBusca
-public class AEstrela implements IAlgoritmoDeBusca {
+public class BFS implements IAlgoritmoDeBusca {
 	
 	Graph grafo;
 	
-	public AEstrela(Graph grafo){
+	public BFS(Graph grafo){
 		this.grafo = grafo;
 	}		
 	
@@ -70,5 +65,3 @@ public class AEstrela implements IAlgoritmoDeBusca {
 		return false;
 	}
 }
-
-
