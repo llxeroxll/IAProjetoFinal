@@ -9,7 +9,7 @@ public class AEstrela implements IAlgoritmoDeBusca {
 	}
 	
 	@Override
-	public String search(Vertex noIni, Vertex noFin) {
+	public String search(Vertex noIni, Vertex noFin, int hour) {
 		Vertex noAux = noIni;
 		double distancia = 0;
 		double distLocal;
@@ -30,11 +30,11 @@ public class AEstrela implements IAlgoritmoDeBusca {
 
 				distHeuristica = 0;
 				distHeuristica = grafo.getEclidDist(e.getDestination(), noFin.getId());
-				distHeuristica += e.getValue();
+				distHeuristica += e.getHour(hour);
 
 				if(distHeuristica < menorVal){
 					menorVal = distHeuristica;
-					distLocal = e.getValue();
+					distLocal = e.getHour(hour);
 					noAux = grafo.searchVertex(e.getDestination());
 				}
 			}
