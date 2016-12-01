@@ -1,6 +1,6 @@
 
 //strategy de IAlgoritmoDeBusca
-public class Dijkstra implements IAlgoritmoDeBusca {
+public class Greedy implements IAlgoritmoDeBusca {
 
 	@Override
 	public String search(Vertex noIni, Vertex noFin) {
