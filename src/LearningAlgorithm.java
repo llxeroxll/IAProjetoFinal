@@ -19,11 +19,14 @@ public class LearningAlgorithm implements ILearningAlgorithm {
 								 Integer.parseInt(data[1]), 
 								 Integer.parseInt(data[2]),
 								 Double.parseDouble(data[3]));
+				line = lerArq.readLine();
 			}
 			
-			
+			arq.close();
 		}catch(IOException e){
-			
+			System.err.println("Deu ruim");
+			e.printStackTrace();
 		}
+		
 	}
 }

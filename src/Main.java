@@ -7,14 +7,17 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		String path = "X:\\UFPB\\P7\\IA\\PROJETO IA\\IAProjetoFinal\\src\\";
+		String path = "C:\\Coisas\\IAProjetoFinal\\src\\";
 		
-		Graph g = new Graph();
-		g.loadGraphData(path + "graph.txt");
-		g.loadHeuristicMatrix(10, path + "h.txt");
+		Graph graph = new Graph();
+		graph.loadGraphData(path + "graph.txt");
+		graph.loadHeuristicMatrix(10, path + "h.txt");
 		
-		AEstrela executor = new AEstrela(g);
-		String saida = executor.search(g.searchVertex(0), g.searchVertex(9));
+		LearningAlgorithm l = new LearningAlgorithm();
+		l.Learn(graph, path + "training.txt");
+		
+		Greedy executor = new Greedy(graph);
+		String saida = executor.search(graph.searchVertex(0), graph.searchVertex(9), 0);
 		
 		System.out.println(saida);
 	}
