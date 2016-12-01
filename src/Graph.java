@@ -94,7 +94,7 @@ public class Graph {
 		e--;
 	}
 	
-	public void updateEdge(int id1, int id2, double newValue, int hour){
+	public void updateEdge(int id1, int id2, int hour, double newValue){
 		for(Edge edge: edges){
 			if(edge.getOrigin() == id1 && edge.getDestination() == id2){
 				edge.setHour(newValue, hour);
