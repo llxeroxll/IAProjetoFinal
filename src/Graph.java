@@ -38,6 +38,10 @@ public class Graph {
 				
 	}
 	
+	public int getV(){
+		return v;
+	}
+	
 	public double getEclidDist(int no1, int no2){
 		return heuristicMatrix[no1][no2];
 	}
@@ -128,7 +132,7 @@ public class Graph {
 		    
 		    String[] data;
 		    
-		    for(int i = 0; i<numberOfVertexes; i++){
+		    for(int i = 0; i < numberOfVertexes; i++){
 		    	linha = lerArq.readLine();
 		    	addVertex(i, linha);
 		    }

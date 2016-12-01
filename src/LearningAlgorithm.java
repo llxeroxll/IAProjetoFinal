@@ -15,8 +15,8 @@ public class LearningAlgorithm implements ILearningAlgorithm {
 			line = lerArq.readLine();
 			while(line != null){
 				data = line.split(";"); // origin;destination;hour;value
-				graph.updateEdge(Integer.parseInt(data[0]), 
-								 Integer.parseInt(data[1]), 
+				graph.updateEdge(Integer.parseInt(data[0]) -1, 
+								 Integer.parseInt(data[1]) -1, 
 								 Integer.parseInt(data[2]),
 								 Double.parseDouble(data[3]));
 				line = lerArq.readLine();
