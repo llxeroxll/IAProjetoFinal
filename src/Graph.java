@@ -83,6 +83,19 @@ public class Graph {
 		return vertex.getEdges();
 	}
 	
+	
+	public Double getEdgeValue(int id1, int id2, int hora){
+	
+		for(Edge e : edges){
+			if(e.getOrigin() == id1 && e.getDestination() == id2){
+				return e.getHour(hora);
+			}
+		}		 
+		
+		return -1.0;
+	}
+	
+	
 	public ArrayList<Vertex> getNeighbors(Vertex vertex){
 		ArrayList<Edge> edges = getExitingEdges(vertex);
 		ArrayList<Vertex> retorno = new ArrayList<Vertex>();
